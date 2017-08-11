@@ -9,6 +9,10 @@ class Search extends Component {
     books: []
   }
   updateShelf = (id, shelf) => {
+    const changedBook = this.state.books.filter((book) => book.id===id)
+    changedBook[0].shelf = shelf
+    const otherBooks = this.state.books.filter((book) => book.id !== id)
+    this.setState((state) => ({ books: otherBooks.concat([changedBook])}))
     this.props.updateShelf(id, shelf)
 	}
 	updateQuery = (query) => {

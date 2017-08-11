@@ -21,11 +21,9 @@ class BooksApp extends Component {
       this.updateShelf.bind(this);
     }
   updateShelf = (id, shelf) => {
-
     const idObj = {"id": id}
     const isCurrent = this.state.books.filter((book) => book.id===id)
     if(isCurrent.length!==0) {
-      console.log("id: " + id + " shelf: " + shelf)
       isCurrent[0].shelf = shelf
       const newArr = this.state.books.filter((b) => b.id !== id)
       this.setState((state) => ({ books: newArr.concat(isCurrent)}))
@@ -38,18 +36,9 @@ class BooksApp extends Component {
             console.log("error fetching: " + reason)
         })
       }
-
     }).catch((reason) => {
         console.log("error updating: " + reason)
     })
-    // const changeState = this.state
-    // const book = changeState.books.filter((b) => b.id === id)
-    // const booksFiltered = changeState.books.filter((b) => b.id !== id)
-    // book[0].shelf = shelf
-    // this.setState(state => ({
-    //     books: booksFiltered.concat(book)
-    //   }))
-    // console.log(id + ", " + shelf)
   }
   render() {
     return (
